@@ -2,7 +2,7 @@
 #define DATA_BASE_H
 #include<QSqlDatabase>
 #include<QDebug>
-
+#include"logger.h"
 
 
 namespace data_base{

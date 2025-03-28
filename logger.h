@@ -33,6 +33,8 @@ inline string ERROR="error:";
 }
 
 
+
+//日志类 记录程序执行的状态
 class logger
 {
 public:

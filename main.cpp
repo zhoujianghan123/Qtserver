@@ -1,5 +1,28 @@
 #include <QCoreApplication>
 #include"sever.h"
+
+
+
+int sum(int x,int y){
+    cout << "thread:"<<std::this_thread::get_id() << endl;
+    return x+y;
+}
+
+
+void runtine(){
+
+    thread_pool::pool p;
+    int x = 10,y = 20;
+    while(x < 100){
+        auto res = p.enqueue(std::move(sum),x++,y++);
+        res.wait();
+        cout << res.get() << endl;
+    }
+
+}
+
+
+
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -16,7 +39,6 @@ int main(int argc, char *argv[])
     // to a.exec() or use the Non-Qt Plain C++ Application template.
     //logger l;
     //l.log(runtype::ERROR,"error");
-    data_base::mysql base;
-    return 0;
-    //return a.exec();
+    runtine();
+    return a.exec();
 }
